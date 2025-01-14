@@ -1,3 +1,6 @@
+import { contactListDispatcher } from "../views/contact-list-dispatcher";
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -12,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contactList: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,7 +41,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			setContactList: async () => {
+				const contactList = await contactListDispatcher.get();
+				const store = getStore();
+				setStore({ ...store, contactList })
+			},
+			addContact: async (name, phone, email, address) => {
+				await contactListDispatcher.post(name, phone, email, address)
+			},
+			deleteContact: async (contactId) => {
+				await contactListDispatcher.delete(contactId);
 			}
+
 		}
 	};
 };
