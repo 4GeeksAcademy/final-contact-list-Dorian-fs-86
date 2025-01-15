@@ -1,34 +1,40 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-
 export const AddContact = () => {
-	const { actions } = useContext(Context);
-	const navigate = useNavigate();
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();
 
+    const [contact, setContact] = useState({ name: "", phone: "", email: "", address: "" });
 
-	const [name, setName] = useState('');
-	const [phone, setPhone] = useState('');
-	const [email, setEmail] = useState('');
-	const [address, setAddress] = useState('');
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setContact({ ...contact, [name]: value });
+    };
 
-	const addcontact = async () => {
-		await actions.addcontact(name, phone, email, address)
-		navigate({})
+    const addContact = async () => {
+        const { name, phone, email, address } = contact;
 
-	}
-	return (<>
-		<div>
-			<input type="text" placeholder="name" value={name} onChange={(e) => { setName(e.target.value) }} />
-			<input type="text" placeholder="phone" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
-			<input type="text" placeholder="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-			<input type="text" placeholder="address" value={address} onChange={(e) => { setAddress(e.target.value) }} />
-			<button onClick={addcontact}>Save</button>
-			<Link to='/'>
-				<span>Back to contacts</span>
-			</Link>
-		</div>
-	</>)
-}
+        if (!name || !phone || !email || !address) {
+            alert("All fields are required!");
+            return;
+        }
 
+        await actions.addContact(name, phone, email, address);
+        navigate("/");
+    };
+
+    return (
+        <div>
+            <input name="name" type="text" placeholder="Name" value={contact.name} onChange={handleChange} />
+            <input name="phone" type="text" placeholder="Phone" value={contact.phone} onChange={handleChange} />
+            <input name="email" type="text" placeholder="Email" value={contact.email} onChange={handleChange} />
+            <input name="address" type="text" placeholder="Address" value={contact.address} onChange={handleChange} />
+            <button onClick={addContact}>Save</button>
+            <Link to="/">
+                <span>Back to contacts</span>
+            </Link>
+        </div>
+    );
+};
