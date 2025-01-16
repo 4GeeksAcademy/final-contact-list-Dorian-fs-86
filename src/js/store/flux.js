@@ -1,4 +1,4 @@
-import { contactListDispatcher } from "../views/contact-list-dispatcher";
+import { contactListDispatcher } from "./contact-list-dispatcher";
 
 const getState = ({ getStore, getActions, setStore }) => {
     return {
@@ -44,6 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 try {
                     await contactListDispatcher.delete(contactId);
                     await getActions().setContactList();
+                    alert("are you shure, to delete this contact? ")
                 } catch (error) {
                     console.error("Error deleting contact:", error);
                 }

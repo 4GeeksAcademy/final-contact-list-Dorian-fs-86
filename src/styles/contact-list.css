@@ -1,0 +1,50 @@
+.contact-content {
+    width: 50%;
+    height: 21vh;
+    margin: 10px;
+    border: 0;
+    padding: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.image-contact {
+    display: flex;
+    width: 10%;
+}
+
+.contact-list {
+    width: 75%;
+    display: flex;
+    margin-left: 5px;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: stretch;
+    text-align: center;
+    gap: 3px;
+    font-size: 1.5rem;
+    border: 1px black;
+}
+
+.delete-button {
+    background: rgba(231, 76, 60, 0.6);
+    color: white;
+    border: 1px solid  rgba(213, 40, 21, 0.8);
+    padding: 10px 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+.link-contact{
+    background: rgba(231, 76, 60, 0.6);
+    color: white;
+    border: 1px solid  rgba(213, 40, 21, 0.8);
+    padding: 10px 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    align-items: space-between;
+    justify-content: stretch;
+    
+}

@@ -17,8 +17,7 @@ export const AddContact = () => {
         const { name, phone, email, address } = contact;
 
         if (!name || !phone || !email || !address) {
-            alert("All fields are required!");
-            return;
+            alert("Complete all request!!");
         }
 
         await actions.addContact(name, phone, email, address);
@@ -27,11 +26,15 @@ export const AddContact = () => {
 
     return (
         <div>
-            <input name="name" type="text" placeholder="Name" value={contact.name} onChange={handleChange} />
-            <input name="phone" type="text" placeholder="Phone" value={contact.phone} onChange={handleChange} />
-            <input name="email" type="text" placeholder="Email" value={contact.email} onChange={handleChange} />
-            <input name="address" type="text" placeholder="Address" value={contact.address} onChange={handleChange} />
-            <button onClick={addContact}>Save</button>
+            <div>
+                <input name="name" type="text" placeholder="Name" value={contact.name} onChange={handleChange} />
+                <input name="phone" type="text" placeholder="Phone" value={contact.phone} onChange={handleChange} />
+                <input name="email" type="text" placeholder="Email" value={contact.email} onChange={handleChange} />
+                <input name="address" type="text" placeholder="Address" value={contact.address} onChange={handleChange} />             
+            </div>
+            <div>
+                <button onClick={addContact}>Save</button>
+            </div>
             <Link to="/">
                 <span>Back to contacts</span>
             </Link>
